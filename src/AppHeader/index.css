@@ -1,0 +1,27 @@
+.app-header {
+  height: 72px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.logo-container img {
+  height: 40px;
+  width: 40px;
+}
+
+.logo-container h2 {
+  margin-left: 8px;
+  text-transform: uppercase;
+}

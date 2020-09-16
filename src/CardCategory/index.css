@@ -1,0 +1,21 @@
+.category-indicator {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 6px;
+}
+
+.epic {
+  background-color: #4B2ED7;
+}
+
+.feature {
+  background-color: deepskyblue;
+}
+
+.bug {
+  background-color: #9F8EE9;
+}
+
+.story {
+  background-color: white;
+}

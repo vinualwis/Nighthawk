@@ -1,0 +1,36 @@
+.priority-indicator {
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: white;
+  width: max-content;
+  max-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,7%);
+}
+
+.priority-indicator svg {
+  margin-right: 4px;
+}
+
+.priority-text {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.high {
+  color: deeppink;
+  text-shadow: 0 0 3px deeppink;
+}
+
+.medium {
+  color: lightsalmon;
+  text-shadow: 0 0 3px lightsalmon;
+}
+
+.low {
+  color: lightgreen;
+  text-shadow: 0 0 3px lightgreen;
+}

@@ -1,0 +1,14 @@
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid deepskyblue;
+  box-shadow: 0 0 3px deepskyblue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+}

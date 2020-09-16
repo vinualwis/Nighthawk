@@ -1,0 +1,17 @@
+.card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: rgba(255,255,255,7%);
+  color: white;
+  margin-top:12px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  box-shadow: rgba(12, 12, 13, 0.2) 0px 1px 8px 0px;
+}
+
+.card:hover {
+  cursor: grab;
+}
