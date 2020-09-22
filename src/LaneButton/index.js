@@ -4,9 +4,9 @@ import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const LaneButton = ({text}) => {
+const LaneButton = ({text, openModal}) => {
   return (
-    <button className="lane-button">
+    <button className="lane-button" onClick={openModal}>
       <FontAwesomeIcon icon={faPlus}/>
       {text}
     </button>
@@ -14,7 +14,8 @@ const LaneButton = ({text}) => {
 }
 
 LaneButton.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  openModal: PropTypes.func
 }
 
 export default LaneButton;

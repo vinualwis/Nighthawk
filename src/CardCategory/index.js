@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const CardCategory = ({category}) => {
-  return <span className={`category-indicator ${category}`} title={category}></span>;
+  return (
+    <div className="category-indicator">
+      <span className={`category-color ${category}`}></span>
+      {category.toUpperCase()}
+    </div>
+  )
 }
 
 CardCategory.propTypes = {

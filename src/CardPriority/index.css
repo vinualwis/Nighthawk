@@ -17,12 +17,12 @@
 
 .priority-text {
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  text-align: center;
 }
 
 .high {
-  color: deeppink;
-  text-shadow: 0 0 3px deeppink;
+  color: rgb(117, 66, 229);
 }
 
 .medium {

@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
 import './index.css';
 import Card from '../Card/index.js';
-import {ReactSortable} from 'react-sortablejs';
+import { ReactSortable } from 'react-sortablejs';
 
 const LaneContent = () => {
   const [list, setList] = useState(
     [
       {
-        id: Math.floor(Math.random() * 100),
+        id: 199,
         title: 'Simple and elegant code',
         category: 'epic',
         priority: 'high'
       },
       {
-        id: Math.floor(Math.random() * 100),
+        id: 299,
         title: 'Nighthawk Research',
         category: 'feature',
         priority: 'high'
       },
       {
-        id: Math.floor(Math.random() * 100),
+        id: 399,
         title: 'A11y',
         category: 'feature',
         priority: 'high'
@@ -36,7 +36,7 @@ const LaneContent = () => {
     >
       {
         list.map(({id,title,category,priority}) => {
-          return <Card key={id} cardTitle={title} category={category} priority={priority}/>
+          return <Card key={id.toString()} cardTitle={title} category={category} priority={priority}/>
         })
       }
     </ReactSortable>

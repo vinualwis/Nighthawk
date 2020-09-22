@@ -4,17 +4,18 @@ import './index.css';
 import LaneHeader from '../LaneHeader/index.js';
 import LaneContent from '../LaneContent/index.js';
 
-const Lane = ({title}) => {
+const Lane = ({title, ...rest}) => {
   return (
     <article className='lane'>
-      <LaneHeader title={title}/>
+      <LaneHeader title={title} {...rest}/>
       <LaneContent/>
     </article>
   );
 }
 
 Lane.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  openModal: PropTypes.func,
 }
 
 export default Lane;
