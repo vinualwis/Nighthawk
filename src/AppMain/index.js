@@ -104,7 +104,6 @@ class AppMain extends React.Component {
         [lane]: [...state.board[lane],newCard]
       }
       const counter = state.counter + 1;
-      console.log(board);
       return {
         board,
         counter

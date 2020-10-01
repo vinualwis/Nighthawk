@@ -17,7 +17,6 @@ class AddCardModal extends Component {
   }
 
   modalFormSubmit= (newCard) => {
-    console.log(newCard);
     this.props.addCardHandler(newCard);
     this.props.closeModal();
   }
