@@ -4,7 +4,7 @@ import './index.css';
 
 const ModalFooter = ({children}) => {
   return (
-    <footer>
+    <footer className="modal-footer">
       {children}
     </footer>
   );

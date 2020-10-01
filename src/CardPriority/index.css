@@ -11,26 +11,8 @@
   background: rgba(255,255,255,7%);
 }
 
-.priority-indicator svg {
-  margin-right: 4px;
-}
-
 .priority-text {
   text-transform: uppercase;
   font-size: 0.65rem;
   text-align: center;
-}
-
-.high {
-  color: rgb(117, 66, 229);
-}
-
-.medium {
-  color: lightsalmon;
-  text-shadow: 0 0 3px lightsalmon;
-}
-
-.low {
-  color: lightgreen;
-  text-shadow: 0 0 3px lightgreen;
 }

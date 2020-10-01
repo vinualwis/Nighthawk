@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import './index.css';
 import Lane from '../Lane/index.js'
 
-const LanesContainer = ( {lanes, ...rest} ) => {
+const LanesContainer = ( { board, ...rest} ) => {
   return (
     <div className="lanes-container">
         {
-          lanes.map((lane) => {
-            return <Lane key={lane} title={lane} {...rest} />
+          Object.keys(board).map((lane) => {
+            return <Lane key={lane} title={lane} {...rest} cards={board[lane]} />
           })
         }
     </div>
@@ -16,7 +16,7 @@ const LanesContainer = ( {lanes, ...rest} ) => {
 }
 
 LanesContainer.propTypes = {
-  lanes: PropTypes.arrayOf(PropTypes.string),
+  board: PropTypes.object.isRequired,
 }
 
 export default LanesContainer;

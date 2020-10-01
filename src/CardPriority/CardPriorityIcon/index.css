@@ -1,0 +1,18 @@
+.high, .medium, .low {
+  margin-right: 4px;
+}
+
+.high {
+  color: deeppink;
+  text-shadow: 0 0 3px deeppink;
+}
+
+.medium {
+  color: dodgerblue;
+  text-shadow: 0 0 3px dodgerblue;
+}
+
+.low {
+  color: deepskyblue;
+  text-shadow: 0 0 3px deepskyblue;
+}

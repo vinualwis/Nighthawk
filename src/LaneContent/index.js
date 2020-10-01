@@ -1,31 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import './index.css';
 import Card from '../Card/index.js';
 import { ReactSortable } from 'react-sortablejs';
 
-const LaneContent = () => {
-  const [list, setList] = useState(
-    [
-      {
-        id: 199,
-        title: 'Simple and elegant code',
-        category: 'epic',
-        priority: 'high'
-      },
-      {
-        id: 299,
-        title: 'Nighthawk Research',
-        category: 'feature',
-        priority: 'high'
-      },
-      {
-        id: 399,
-        title: 'A11y',
-        category: 'feature',
-        priority: 'high'
-      },
-    ]
-  )
+const LaneContent = ({cards}) => {
+  const [list, setList] = useState(cards);
+  useEffect(() => {
+    // Updates the state based on props
+    setList(cards);
+  },[cards])
   return (
     <ReactSortable
       className='lane-content'
@@ -42,5 +26,11 @@ const LaneContent = () => {
     </ReactSortable>
   );
 }
+
+LaneContent.propTypes = {
+  cards: PropTypes.array.isRequired
+}
+
+
 
 export default LaneContent;

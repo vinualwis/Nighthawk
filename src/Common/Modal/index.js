@@ -11,7 +11,10 @@ const Modal = ({children,hidden}) => {
 }
 
 Modal.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired,
   hidden: PropTypes.bool,
 }
 

@@ -1,0 +1,10 @@
+.modal-header {
+  width: 100%;
+  height: fit-content;
+  padding: 16px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

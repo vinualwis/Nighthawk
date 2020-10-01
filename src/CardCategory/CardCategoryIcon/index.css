@@ -1,0 +1,23 @@
+.category-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  color: #4B2ED7;
+  margin-right: 4px;
+}
+
+.epic {
+  background-color: #4B2ED7;
+}
+
+.feature {
+  background-color: deepskyblue;
+}
+
+.bug {
+  background-color: #9F8EE9;
+}
+
+.story {
+  background-color: white;
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CategoryIcon from './CardCategoryIcon';
 import './index.css';
 
 const CardCategory = ({category}) => {
   return (
     <div className="category-indicator">
-      <span className={`category-color ${category}`}></span>
+      <CategoryIcon category={category}/>
       {category.toUpperCase()}
     </div>
   )
