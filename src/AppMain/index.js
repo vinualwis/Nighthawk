@@ -111,11 +111,23 @@ class AppMain extends React.Component {
     });
   }
 
+  onLaneContentChange = (lane,cards) => {
+    this.setState(state => {
+      const board = {
+        ...state.board,
+        [lane]: [...cards]
+      }
+      return {
+        board
+      }
+    });
+  }
+
   render() {
     const { board, hidden } = this.state;
     return (
       <main>
-        <LanesContainer board={board} openModal={this.openModal}/>
+        <LanesContainer board={board} openModal={this.openModal} onLaneChange={this.onLaneContentChange}/>
         <AddCardModal hidden={hidden} closeModal={this.closeModal} addCardHandler={this.addCardHandler}/>
       </main>
     );

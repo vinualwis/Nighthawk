@@ -25,3 +25,7 @@
 .base-button:hover, .base-button:hover {
   background-color: rgba(255,255,255,5%);
 }
+
+.base-button:active {
+  outline: none;
+}

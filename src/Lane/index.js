@@ -4,11 +4,11 @@ import './index.css';
 import LaneHeader from '../LaneHeader/index.js';
 import LaneContent from '../LaneContent/index.js';
 
-const Lane = ({title,cards, ...rest}) => {
+const Lane = ({title,cards,onLaneChange, ...rest}) => {
   return (
     <article className='lane'>
       <LaneHeader title={title} {...rest}/>
-      <LaneContent cards={cards}/>
+      <LaneContent laneId={title} cards={cards} onLaneChange={onLaneChange}/>
     </article>
   );
 }
