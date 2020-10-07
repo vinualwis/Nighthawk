@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css'
-import CardPriority from '../CardPriority/index.js';
-import CardCategory from '../CardCategory/index.js';
+import CardPriority from '../CardPriority';
+import CardCategory from '../CardCategory';
 import Avatar from '../Avatar/index.js';
 
 const CardContentFooter = ({priority,category}) => {

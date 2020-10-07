@@ -4,3 +4,9 @@ textarea {
   min-width: 100%;
   max-width: 100%;
 }
+
+
+textarea {
+  padding-top: 8px;
+  font-family: var(--main-font-family);
+}

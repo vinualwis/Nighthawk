@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import AppHeader from './AppHeader/index.js';
-import AppMain from './AppMain/index.js';
-
+import AppHeader from './components/AppHeader';
+import { Switch,Route } from 'react-router-dom';
+import Board from './pages/Board';
 
 
 const App = () => {
   return (
     <div className="App">
       <AppHeader/>
-      <AppMain/>
+      <Switch>
+        <Route path="/" component={Board} exact/>
+      </Switch>
     </div>
   );
 }

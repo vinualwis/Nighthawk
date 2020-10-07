@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
-import LaneButton from '../LaneButton/index.js';
+import LaneButton from '../LaneButton';
 
 const LaneHeader = ({title, openModal}) => {
   return (

@@ -12,9 +12,13 @@ const LaneContent = ({laneId, cards, onLaneChange}) => {
   },[cards]);
   return (
     <ReactSortable
+      id={laneId}
       className='lane-content'
       list={cardslist}
       setList={(newState)=> {
+        console.log('🏎');
+        console.log(laneId);
+        console.log(newState);
         onLaneChange(laneId,newState);
         setList(newState);
       }}
@@ -23,7 +27,7 @@ const LaneContent = ({laneId, cards, onLaneChange}) => {
     >
       {
         cardslist.map(({id,title,category,priority}) => {
-          return <Card key={id.toString()} cardTitle={title} category={category} priority={priority}/>
+          return <Card id={id} key={id.toString()} cardTitle={title} category={category} priority={priority}/>
         })
       }
     </ReactSortable>

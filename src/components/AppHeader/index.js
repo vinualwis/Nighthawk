@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
-import logo from '../assets/App-logo.svg';
-
+import logo from '../../assets/App-logo.svg';
 const AppHeader = () => {
   return (
     <header className="app-header">
