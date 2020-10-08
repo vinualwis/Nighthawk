@@ -17,6 +17,7 @@ Lane.propTypes = {
   title: PropTypes.string,
   openModal: PropTypes.func,
   cards: PropTypes.array,
+  onLaneChange: PropTypes.func.isRequired,
 }
 
 export default Lane;
