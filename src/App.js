@@ -3,6 +3,7 @@ import './App.css';
 import AppHeader from './components/AppHeader';
 import { Switch,Route } from 'react-router-dom';
 import Board from './pages/Board';
+import { LANDING_PAGE, BOARD } from './constants/routes'; 
 
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
     <div className="App">
       <AppHeader/>
       <Switch>
-        <Route path="/" component={Board} exact/>
+        <Route path={LANDING_PAGE} component={Board} exact/>
       </Switch>
     </div>
   );
