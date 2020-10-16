@@ -12,24 +12,28 @@ class Select extends Component {
     super(props);
     this.state = {
       hidden: true,
-      selected: 'option0',
+      selected: props.initialValue || 'option0',
+    }
+  }
+
+  outSideClickListener = (event) => {
+    if(document.getElementById(this.props.id) && !document.getElementById(this.props.id).contains(event.target) && !this.state.hidden){
+      this.closeDropDown();
     }
   }
 
   componentDidMount() {
-    document.addEventListener("click",(event) => {
-      if(!document.getElementById(this.props.id).contains(event.target) && !this.state.hidden){
-        this.closeDropDown();
-      }
-    });
+    document.addEventListener("click",this.outSideClickListener);  
+    // Make sure that this is the correct place to do this
+    if(this.props.initialValue){
+      console.log(`ul > #${this.props.initialValue}`);
+      document.querySelector(`#${this.props.id} .selected-option-label`).innerHTML = document.querySelector(`ul > #${this.props.initialValue}`).innerHTML; 
+      document.getElementById(this.props.initialValue).setAttribute('aria-selected',true);
+    } 
   }
 
   componentWillUnmount(){
-    document.removeEventListener("click",(event) => {
-      if(!document.getElementById(this.props.id).contains(event.target) && !this.state.hidden){
-        this.closeDropDown();
-      }
-    });
+    document.removeEventListener("click",this.outSideClickListener,false);
   }
   
   toggleDropdown = () => {
@@ -149,6 +153,7 @@ class Select extends Component {
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
+  initialValue: PropTypes.string,
   selectLabel: PropTypes.string.isRequired,
   children: PropTypes.oneOfType(
     [PropTypes.node, PropTypes.arrayOf(PropTypes.node)]

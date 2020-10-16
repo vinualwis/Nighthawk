@@ -1,15 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './index.css';
-import logo from '../../assets/App-logo.svg';
-const AppHeader = () => {
+import AppLogo from '../AppLogo';
+import BaseButton from '../Common/Button';
+
+const AppHeader = ({logOut}) => {
   return (
     <header className="app-header">
-      <div className="logo-container">
-        <img src={logo} alt="app-logo"/>
-        <h2>nighthawk</h2>
+      <AppLogo/>
+      <div className="header-actions-container">
+        <BaseButton onClickHandler={logOut}>
+          Logout
+        </BaseButton>
       </div>
     </header>
   );
+}
+
+AppHeader.propTypes = {
+  logOut: PropTypes.func.isRequired
 }
 
 export default AppHeader;

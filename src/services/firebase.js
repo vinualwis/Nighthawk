@@ -1,10 +1,17 @@
 import firebase from 'firebase';
+const {
+  REACT_APP_API_KEY,
+  REACT_APP_AUTH_DOMAIN,
+  REACT_APP_DATABASE_URL
+// eslint-disable-next-line no-undef
+} = process.env;
 
 const config = {
-  apiKey: "AIzaSyD4-r3JrfmCsR2VObOTxE5wioe1wrV9mfw",
-  authDomain: "nighthawk-e2dde.firebaseapp.com",
-  databaseURL: "https://nighthawk-e2dde.firebaseio.com",
+  apiKey: REACT_APP_API_KEY,
+  authDomain: REACT_APP_AUTH_DOMAIN,
+  databaseURL: REACT_APP_DATABASE_URL
 }
+
 firebase.initializeApp(config);
-export const auth = firebase.auth;
+export const auth = firebase.auth();
 export const database = firebase.database();

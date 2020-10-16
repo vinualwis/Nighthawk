@@ -1,0 +1,27 @@
+
+
+.login-container > p {
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.terms-statement {
+  font-size: 0.8rem;
+  padding-bottom: 8px;
+  line-height: 1.15rem;
+}
+
+.login-header {
+  width: 100%;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signup-form {
+  padding: 16px 16px 24px 16px;
+  box-sizing: border-box;
+}

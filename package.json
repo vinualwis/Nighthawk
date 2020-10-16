@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-sortablejs": "^2.0.11",
+    "recompose": "^0.30.0",
     "sortablejs": "^1.11.2-alpha.3"
   },
   "scripts": {
