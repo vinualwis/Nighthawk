@@ -3,6 +3,7 @@ const {
   REACT_APP_API_KEY,
   REACT_APP_AUTH_DOMAIN,
   REACT_APP_DATABASE_URL
+// eslint-disable-next-line no-undef
 } = process.env;
 
 const config = {
@@ -10,6 +11,7 @@ const config = {
   authDomain: REACT_APP_AUTH_DOMAIN,
   databaseURL: REACT_APP_DATABASE_URL
 }
+
 firebase.initializeApp(config);
-export const auth = firebase.auth;
+export const auth = firebase.auth();
 export const database = firebase.database();

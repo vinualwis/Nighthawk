@@ -3,4 +3,5 @@ main {
   height: calc(100% - 72px);
   padding: 16px;
   box-sizing: border-box;
+  background-color: #282c34;
 }

@@ -10,7 +10,6 @@
   border-radius: 4px;
   font-size: 0.85rem;
   box-shadow: rgba(12, 12, 13, 0.2) 0px 1px 8px 0px;
-  /* animation: slide-down 0.2s ease-in-out; */
 }
 
 .card:hover {
