@@ -7,7 +7,7 @@ const CardPriority = ({priority}) => {
   return (
     <div className="priority-indicator" title={priority}> 
       <PriorityIcon priority={priority}/>
-      <span className="priority-text">High</span>
+      <span className="priority-text">{priority.toUpperCase()}</span>
     </div>
   )
 }
