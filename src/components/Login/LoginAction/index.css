@@ -12,3 +12,7 @@
 .sign-up-action:hover {
   background-color: #2475e0;
 }
+
+.sign-up-action:disabled {
+  background-color: gray;
+}
