@@ -23,8 +23,8 @@ const LaneContent = ({laneId, cards, onLaneChange, onCardClickHandler}) => {
       group="shared"
     >
       {
-        cardslist.map(({id,title,category,priority}) => {
-          return <Card id={id} key={id.toString()} cardTitle={title} category={category} priority={priority} onCardClickHandler={onCardClickHandler}/>
+        cardslist.map(({id,title,category,priority,assignee, display}) => {
+          return <Card id={id} key={id.toString()} display={display} cardTitle={title} category={category} priority={priority} assignee={assignee} onCardClickHandler={onCardClickHandler}/>
         })
       }
     </ReactSortable>
