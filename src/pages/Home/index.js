@@ -11,7 +11,7 @@ const Home = () => {
     <section className="home">
         <AppHeader logOut={() => {console.log('logout')}}/>
         <div className="home-content"> 
-          <Heading1>My Boards</Heading1>
+          <Heading1 className="home-title">My Boards</Heading1>
           <section className="boards-gallery">
             <Link to="/board">
               <BoardSummary 
