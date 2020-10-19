@@ -6,6 +6,7 @@ import CardSummaryModal from '../../components/CardSummaryModal';
 import { database, auth } from '../../services/firebase';
 import AppHeader from '../../components/AppHeader';
 import withAuthorisation from '../../components/Authorisation';
+import BoardHeader from '../../components/BoardHeader';
 
 class Board extends React.Component {
   constructor() {
@@ -15,7 +16,9 @@ class Board extends React.Component {
       editCardHidden: true,
       counter: 0,
       openCard: '',
-      board: {}
+      board: {},
+      title: 'Project Nighthawk',
+      filterText: '',
     }
   }
 
@@ -76,6 +79,12 @@ class Board extends React.Component {
       this.state.board[lane].sort((a,b) => b.position - a.position)[0] ? 
       this.state.board[lane].sort((a,b) => b.position - a.position)[0].position + 1 : 0;
     return position;
+  }
+
+  filterBoard = (event) => {
+    this.setState({
+      filterText: event.target.value
+    });
   }
 
   addCardHandler = (newCard) => {
@@ -146,6 +155,7 @@ class Board extends React.Component {
   }
 
   onLaneContentChange = (lane,cards) => {
+    // If the cards have been filtered then change the card order
     let position = 0;
     const reducer = (accumulator, currentValue) => {
       position += 1;
@@ -172,13 +182,35 @@ class Board extends React.Component {
     database.ref(`boards/001/lanes/${lane}/cards`).set(cardsJSON);
   }
 
+  filterTheBoard = () => {
+    let filteredBoard = {};
+    const { board, filterText } = this.state;
+    Object.keys(board).forEach((lane) => {
+      filteredBoard[lane] = board[lane].map((card) => {
+        const {title, priority, category} = card;
+        const meetsCriteria = title.includes(filterText) || priority.includes(filterText) || category.includes(filterText);
+        if (meetsCriteria) {
+          card.display = true;
+        }
+        else {
+          card.display = false;
+        }
+        return card;
+      }
+      );
+    });
+    return filteredBoard;
+  }
+
   render() {
-    const { 
-      board, 
+    const {
+      board,
+      title, 
       addCardHidden,
       editCardHidden,
       openCard
     } = this.state; 
+    const filteredBoard = Object.keys(board).length > 0 && this.filterTheBoard();
     const reducer = (accumulator, currentValue) => {
       return [...accumulator, ...board[currentValue]];
     }
@@ -186,15 +218,16 @@ class Board extends React.Component {
     return (
       <React.Fragment>  
         <AppHeader logOut={this.logOutHandler}/>
-        <main>
-          <LanesContainer board={board} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
+        <section className="board">
+          <BoardHeader title={title} openModal={this.openAddCardModal} filterBoard={this.filterBoard}/>
+          <LanesContainer board={filteredBoard} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
           {
             !addCardHidden ? <AddCardModal closeModal={this.closeAddCardModal} addCardHandler={this.addCardHandler}/> : null
           }
           {
             !editCardHidden ? <CardSummaryModal cardContent={cardContent} closeModal={this.closeEditCardModal} editCardHandler={this.editCardHandler} deleteCardHandler={this.deleteCard}/> : null
           }
-        </main>
+        </section>
       </React.Fragment>
     );
   }

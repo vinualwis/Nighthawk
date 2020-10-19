@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 import CardContent from '../CardContent/index.js';
 
-const Card = ({id, cardTitle, category, priority, onCardClickHandler}) => {
+const Card = ({id, display, cardTitle, assignee, category, priority, onCardClickHandler}) => {
   return (
     <article 
       id={id} 
@@ -13,8 +13,9 @@ const Card = ({id, cardTitle, category, priority, onCardClickHandler}) => {
         e.preventDefault();
         onCardClickHandler(id);
       }}
+      style={{display: !display ? 'none' : 'block'}}
     >
-      <CardContent cardTitle={cardTitle} priority={priority} category={category}/>
+      <CardContent cardTitle={cardTitle} priority={priority} category={category} assignee={assignee}/>
     </article>
   );
 }
@@ -24,7 +25,9 @@ Card.propTypes = {
   cardTitle: PropTypes.string,
   category: PropTypes.oneOf(['story','epic','feature','bug']),
   priority: PropTypes.oneOf(['low','medium','high']),
-  onCardClickHandler: PropTypes.func.isRequired
+  assignee: PropTypes.string.isRequired,
+  onCardClickHandler: PropTypes.func.isRequired,
+  display: PropTypes.bool.isRequired
 }
 
 export default Card;

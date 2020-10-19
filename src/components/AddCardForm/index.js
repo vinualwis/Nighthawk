@@ -6,6 +6,7 @@ import Select from '../Common/FormControls/Select';
 import SelectItem from '../Common/FormControls/Select/SelectItem';
 import CategoryIcon from '../CardCategory/CardCategoryIcon';
 import PriorityIcon from '../CardPriority/CardPriorityIcon';
+import userConfig from '../../constants/users';
 import './index.css';
 
 class AddCardForm extends Component {
@@ -106,9 +107,11 @@ class AddCardForm extends Component {
         />
         <Select id="assignee" selectLabel="Assignee" initialValue={assignee} onChangeHandler={this.onAssigneeChange}>
           <SelectItem id="option0"></SelectItem>
-          <SelectItem id="vinualwis">Vinu Alwis</SelectItem>
-          <SelectItem id="benfordham">Ben Fordham</SelectItem>
-          <SelectItem id="someone">Some One</SelectItem>
+          {Object.keys(userConfig).map((user) => {
+            return (
+              <SelectItem key={user} id={user}>{userConfig[user].name}</SelectItem>
+            )
+          })}
         </Select>
         <Select id="lane" selectLabel="Lane" initialValue={lane} onChangeHandler={this.onLaneChange}>
           <SelectItem id="option0"></SelectItem>

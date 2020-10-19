@@ -6,7 +6,7 @@ const AppLogo = () => {
   return (
     <div className="logo-container">
       <img src={Logo} alt="app-logo"/>
-      <h2>nighthawk</h2>
+      <span className="app-name">nighthawk</span>
     </div>
   )
 }
