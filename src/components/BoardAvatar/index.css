@@ -1,0 +1,12 @@
+.board-avatar {
+  width: 30px;
+  height: 30px;
+  border: 2px solid deepskyblue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25%;
+  margin-right: 12px;
+  font-weight: bold;
+}
