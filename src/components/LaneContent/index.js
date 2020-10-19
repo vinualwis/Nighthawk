@@ -4,7 +4,7 @@ import './index.css';
 import Card from '../Card/index.js';
 import { ReactSortable } from 'react-sortablejs';
 
-const LaneContent = ({laneId, cards, onLaneChange}) => {
+const LaneContent = ({laneId, cards, onLaneChange, onCardClickHandler}) => {
   const [cardslist, setList] = useState(cards);
   useEffect(() => {
     // Updates the state based on props
@@ -16,9 +16,6 @@ const LaneContent = ({laneId, cards, onLaneChange}) => {
       className='lane-content'
       list={cardslist}
       setList={(newState)=> {
-        console.log('🏎');
-        console.log(laneId);
-        console.log(newState);
         onLaneChange(laneId,newState);
         setList(newState);
       }}
@@ -26,8 +23,8 @@ const LaneContent = ({laneId, cards, onLaneChange}) => {
       group="shared"
     >
       {
-        cardslist.map(({id,title,category,priority}) => {
-          return <Card id={id} key={id.toString()} cardTitle={title} category={category} priority={priority}/>
+        cardslist.map(({id,title,category,priority,assignee, display}) => {
+          return <Card id={id} key={id.toString()} display={display} cardTitle={title} category={category} priority={priority} assignee={assignee} onCardClickHandler={onCardClickHandler}/>
         })
       }
     </ReactSortable>
@@ -38,6 +35,7 @@ LaneContent.propTypes = {
   laneId: PropTypes.string.isRequired,
   cards: PropTypes.array.isRequired,
   onLaneChange: PropTypes.func.isRequired,
+  onCardClickHandler: PropTypes.func.isRequired
 }
 
 

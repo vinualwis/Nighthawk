@@ -6,19 +6,29 @@ import Select from '../Common/FormControls/Select';
 import SelectItem from '../Common/FormControls/Select/SelectItem';
 import CategoryIcon from '../CardCategory/CardCategoryIcon';
 import PriorityIcon from '../CardPriority/CardPriorityIcon';
+import userConfig from '../../constants/users';
 import './index.css';
 
 class AddCardForm extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    let title, description, assignee, priority,category, lane;
+    if (props.initialContent) {
+      title = props.initialContent.title;
+      description = props.initialContent.description;
+      assignee = props.initialContent.assignee;
+      priority = props.initialContent.priority;
+      category = props.initialContent.category;
+      lane = props.initialContent.lane;
+    }
     this.state = {
-      title: '',
-      description: '',
-      assignee: '',
-      priority: '',
-      category: '',
-      lane: '',
+      title: title || '',
+      description: description || '',
+      assignee: assignee || '',
+      priority: priority || '',
+      category: category || '',
+      lane: lane || '',
     }
   }
 
@@ -78,9 +88,15 @@ class AddCardForm extends Component {
     });
   }
   
-
   render() {
-    const { title, description } = this.state;
+    const { 
+      title, 
+      description,
+      assignee,
+      priority,
+      category,
+      lane
+    } = this.state;
     return (
       <form id="add-card-form" onSubmit={this.onSubmitHandler}>
         <TextInput 
@@ -89,13 +105,15 @@ class AddCardForm extends Component {
           value={title}
           onChange={this.onTitleChange}
         />
-        <Select id="assignee" selectLabel="Assignee" onChangeHandler={this.onAssigneeChange}>
+        <Select id="assignee" selectLabel="Assignee" initialValue={assignee} onChangeHandler={this.onAssigneeChange}>
           <SelectItem id="option0"></SelectItem>
-          <SelectItem id="vinualwis">Vinu Alwis</SelectItem>
-          <SelectItem id="benfordham">Ben Fordham</SelectItem>
-          <SelectItem id="someone">Some One</SelectItem>
+          {Object.keys(userConfig).map((user) => {
+            return (
+              <SelectItem key={user} id={user}>{userConfig[user].name}</SelectItem>
+            )
+          })}
         </Select>
-        <Select id="lane" selectLabel="Lane" onChangeHandler={this.onLaneChange}>
+        <Select id="lane" selectLabel="Lane" initialValue={lane} onChangeHandler={this.onLaneChange}>
           <SelectItem id="option0"></SelectItem>
           <SelectItem id="backlog">Backlog</SelectItem>
           <SelectItem id="todo">Todo</SelectItem>
@@ -104,7 +122,7 @@ class AddCardForm extends Component {
           <SelectItem id="done">Done</SelectItem>
           <SelectItem id="fun">Fun</SelectItem>
         </Select>
-        <Select id="priority" selectLabel="Priority" onChangeHandler={this.onPriorityChange}>
+        <Select id="priority" selectLabel="Priority" initialValue={priority} onChangeHandler={this.onPriorityChange}>
           <SelectItem id="option0"></SelectItem>
           <SelectItem id="low">
             <PriorityIcon priority='low'/>
@@ -119,7 +137,7 @@ class AddCardForm extends Component {
             High
           </SelectItem>
         </Select>
-        <Select id="category" selectLabel="Category" onChangeHandler={this.onCategoryChange}>
+        <Select id="category" selectLabel="Category" initialValue={category} onChangeHandler={this.onCategoryChange}>
           <SelectItem id="option0"></SelectItem>
           <SelectItem id="story">
             <CategoryIcon category='story'/>
@@ -151,6 +169,7 @@ class AddCardForm extends Component {
 
 AddCardForm.propTypes = {
   modalFormSubmit: PropTypes.func.isRequired,
+  initialContent: PropTypes.object
 }
 
 export default AddCardForm;

@@ -1,3 +1,21 @@
-.lane-button svg {
+.toolbar-button svg {
   margin-right: 8px;
+}
+
+.toolbar-button {
+  background-color: rgba(255,255,255,0);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 0.02rem;
+  padding: 8px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.toolbar-button:hover {
+  background-color: deepskyblue;
 }

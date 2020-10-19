@@ -6,7 +6,7 @@
   color: white;
 }
 
-input, textarea {
+.form-control > input, .form-control > textarea {
   margin-top: 12px;
   background: rgba(255,255,255,5%);
   border: none;

@@ -1,0 +1,11 @@
+.signin {
+  width: 100%;
+  height: 100%;
+}
+
+.sign-up-link {
+  color: #e5e5e5;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}

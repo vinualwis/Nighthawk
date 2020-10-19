@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 import LaneButton from '../LaneButton';
 
-const LaneHeader = ({title, openModal}) => {
+const LaneHeader = ({title,openModal}) => {
   return (
     <header className="lane-header">
       <h3 className="lane-title">{title}</h3>
@@ -13,8 +13,8 @@ const LaneHeader = ({title, openModal}) => {
 }
 
 LaneHeader.propTypes = {
-  title: PropTypes.string,
-  openModal: PropTypes.func
+  title: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 export default LaneHeader;
