@@ -2,10 +2,17 @@ import React from 'react';
 import './App.css';
 import { Switch,Route } from 'react-router-dom';
 import Board from './pages/Board';
+import Home from './pages/Home';
 import LandingPage from './pages/Landing/Landing';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
-import { LANDING_PAGE, BOARD, SIGN_IN, SIGN_UP } from './constants/routes';
+import { 
+  LANDING_PAGE, 
+  BOARD, 
+  SIGN_IN, 
+  SIGN_UP,
+  HOME
+ } from './constants/routes';
 import withAuthentication from './components/Authentication'
 import AuthUserContext from './components/Context/authentication';
 
@@ -22,6 +29,7 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route exact path={BOARD} component={Board}/>
+            <Route exact path={HOME} component={Home}/>
             <Route exact path={LANDING_PAGE} component={LandingPage}/>
             <Route path={SIGN_UP} component={Signup}/>
             <Route path={SIGN_IN} component={Signin} exact/>
