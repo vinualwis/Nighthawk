@@ -40,11 +40,15 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit = (e) => {
-    const { email, password } = this.state;
+    const { email, password, username } = this.state;
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password).then((user) => {
       // eslint-disable-next-line react/prop-types
-      this.props.history.push(BOARD);
+      auth.currentUser.updateProfile({
+        displayName: username
+      }).then(() => {
+        this.props.history.push(BOARD);
+      });
     }).catch((error) => {
       this.setState({error});
     });

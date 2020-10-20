@@ -10,6 +10,7 @@ const SelectItem = ( { id, children, onClickHandler, onKeyDownHandler } ) => {
       role="option"
       onClick={onClickHandler}
       onKeyDown={onKeyDownHandler}
+      className="select-item"
     >
       {children}
     </li>
