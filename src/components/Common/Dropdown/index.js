@@ -32,6 +32,7 @@ class Dropdown extends React.Component {
         hidden: !prevState.hidden
       }
     });
+    console.log(document.getElementById(this.props.id).querySelector('.dropdown-list').firstElementChild);
   }
 
   closeDropDown = () => {
@@ -42,6 +43,9 @@ class Dropdown extends React.Component {
 
   onOptionKeyDown = (event) => {
     switch(event.key){
+      case 'Enter':
+        event.target.click();
+        break;
       case 'ArrowDown':
         event.target.nextSibling && event.target.nextSibling.focus();
         break;
