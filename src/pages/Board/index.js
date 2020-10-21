@@ -209,7 +209,7 @@ class Board extends React.Component {
       editCardHidden,
       openCard
     } = this.state; 
-    const filteredBoard = Object.keys(board).length > 0 && this.filterTheBoard();
+    const filteredBoard = Object.keys(board).length > 0 ? this.filterTheBoard() : {};
     const reducer = (accumulator, currentValue) => {
       return [...accumulator, ...board[currentValue]];
     }
