@@ -2,7 +2,6 @@ import React, {useContext, Suspense, lazy} from 'react';
 import './App.css';
 import withAuthentication from './components/Authentication'
 import AuthUserContext from './components/Context/authentication';
-import { auth } from './services/firebase';
 const AuthenticatedApp = lazy(() => import('./components/AuthenticatedApp'));
 const UnauthenticatedApp = lazy(() => import('./components/UnauthenticatedApp'));
 

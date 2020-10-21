@@ -19,8 +19,8 @@ const Home = () => {
               />
             </Link>
             <BoardSummary 
-              title="IoT Connection Manager" 
-              description="Simplify connectivity management for Telstra M2M customers"
+              title="Apollo" 
+              description="Understanding customer habits for different markets"
             />
             <BoardSummary 
               title="Altex" 
