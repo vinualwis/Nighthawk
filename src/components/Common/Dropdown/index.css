@@ -1,0 +1,11 @@
+.dropdown-menu {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu .hidden {
+  display: none;
+}
