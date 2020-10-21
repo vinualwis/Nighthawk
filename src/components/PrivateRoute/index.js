@@ -9,8 +9,6 @@ const PrivateRoute = ({Component, path}) => {
     <AuthUserContext.Consumer>
       {
         authUser => {
-          console.log('🤪');
-          console.log(authUser);
          return (
            <Route path={path} exact>
              {
