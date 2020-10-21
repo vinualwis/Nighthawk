@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const DropDownList = ({children,visible}) => {
+const DropDownList = ({children,visible,ref}) => {
   return (
-    <ul className={`dropdown-list ${!visible && 'hidden'}`}>
+    <ul ref={ref} className={`dropdown-list ${!visible && 'hidden'}`}>
       {children}
     </ul>
   )

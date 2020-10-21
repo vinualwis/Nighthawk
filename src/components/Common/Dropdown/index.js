@@ -10,6 +10,7 @@ class Dropdown extends React.Component {
     this.state = {
       hidden: true
     }
+    this.firstItem = React.createRef();
   }
 
   outSideClickListener = (event) => {
@@ -20,6 +21,12 @@ class Dropdown extends React.Component {
 
   componentDidMount(){
     document.addEventListener('click',this.outSideClickListener);
+  }
+
+  componentDidUpdate(){
+    if(!this.state.hidden){
+      this.firstItem.current && this.firstItem.current.focus();
+    }
   }
   
   componentWillUnmount(){
@@ -32,7 +39,6 @@ class Dropdown extends React.Component {
         hidden: !prevState.hidden
       }
     });
-    console.log(document.getElementById(this.props.id).querySelector('.dropdown-list').firstElementChild);
   }
 
   closeDropDown = () => {
@@ -59,16 +65,19 @@ class Dropdown extends React.Component {
     const { id, buttonContent } = this.props;
     const { hidden } = this.state;
     return(
-      <div className="dropdown" id={id}> 
+      <div className="dropdown-menu" id={id}> 
         <DropDownButton clickHandler={this.toggleVisible}>
           {buttonContent}
         </DropDownButton>
-        <DropDownList visible={!hidden}>
+        <DropDownList visible={!hidden} ref={this.firstItem}>
           {React.Children.map(this.props.children, (child,index) => {
-            return React.cloneElement(child, {
-              index: index,
-              keyHandler: this.onOptionKeyDown
-            });
+
+              return React.cloneElement(child, {
+                index: index,
+                keyHandler: this.onOptionKeyDown,
+                id:`${id}-${index}`,
+                ...child.props
+              });
           })}
         </DropDownList>
       </div>

@@ -26,7 +26,6 @@ class Select extends Component {
     document.addEventListener("click",this.outSideClickListener);  
     // Make sure that this is the correct place to do this
     if(this.props.initialValue){
-      console.log(`ul > #${this.props.initialValue}`);
       document.querySelector(`#${this.props.id} .selected-option-label`).innerHTML = document.querySelector(`ul > #${this.props.initialValue}`).innerHTML; 
       document.getElementById(this.props.initialValue).setAttribute('aria-selected',true);
     } 
@@ -140,7 +139,7 @@ class Select extends Component {
                 return React.cloneElement(child, {
                   index: index,
                   onClickHandler: this.onOptionClick,
-                  onKeyDownHandler: this.onOptionKeyDown
+                  onKeyDownHandler: this.onOptionKeyDown,
                 });
               })}
             </ul>

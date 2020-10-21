@@ -4,7 +4,6 @@ import LoginAction from '../Login/LoginAction';
 import { auth } from '../../services/firebase';
 import './index.css';
 import {withRouter} from 'react-router-dom';
-import {BOARD} from '../../constants/routes';
 import LoginError from '../Login/LoginError';
 
 class SignUpForm extends React.Component {
@@ -43,11 +42,8 @@ class SignUpForm extends React.Component {
     const { email, password, username } = this.state;
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password).then((user) => {
-      // eslint-disable-next-line react/prop-types
       auth.currentUser.updateProfile({
         displayName: username
-      }).then(() => {
-        this.props.history.push(BOARD);
       });
     }).catch((error) => {
       this.setState({error});

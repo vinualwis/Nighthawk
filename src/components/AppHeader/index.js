@@ -6,7 +6,10 @@ import Dropdown from '../Common/Dropdown';
 import Avatar from '../Avatar';
 import DropdownItem from '../Common/Dropdown/DropdownItem';
 
-const AppHeader = ({logOut}) => {
+const AppHeader = ({logOut, authUser}) => {
+  const [firstName, lastName] = authUser.displayName ? 
+    authUser.displayName.split(' '):
+  ['N','A'];
   return (
     <header className="app-header">
       <AppLogo/>
@@ -14,10 +17,10 @@ const AppHeader = ({logOut}) => {
         <Dropdown
           id="profile-dropdown"
           buttonContent={
-            <Avatar firstname="Vinu" lastname="Alwis" style={{height: '35px', width: '35px'}}/>
+            <Avatar firstname={firstName}lastname={lastName} style={{height: '35px', width: '35px'}}/>
           }
         >
-            <DropdownItem clickHandler={logOut}>Profile</DropdownItem>
+            <DropdownItem clickHandler={logOut} isFocused>Profile</DropdownItem>
             <DropdownItem clickHandler={logOut}>Sign Out</DropdownItem>
         </Dropdown>
       </div>
@@ -26,7 +29,8 @@ const AppHeader = ({logOut}) => {
 }
 
 AppHeader.propTypes = {
-  logOut: PropTypes.func.isRequired
+  logOut: PropTypes.func.isRequired,
+  authUser: PropTypes.object.isRequired
 }
 
 export default AppHeader;

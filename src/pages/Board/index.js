@@ -4,7 +4,6 @@ import LanesContainer from '../../components/LanesContainer';
 import AddCardModal from '../../components/AddCardModal';
 import CardSummaryModal from '../../components/CardSummaryModal';
 import { database, auth } from '../../services/firebase';
-import AppHeader from '../../components/AppHeader';
 import withAuthorisation from '../../components/Authorisation';
 import BoardHeader from '../../components/BoardHeader';
 
@@ -216,18 +215,17 @@ class Board extends React.Component {
     }
     const cardContent = Object.keys(board).reduce(reducer,[]).find(card => card.id === openCard);
     return (
-      <React.Fragment>  
-        <AppHeader logOut={this.logOutHandler}/>
-        <section className="board">
-          <BoardHeader title={title} openModal={this.openAddCardModal} filterBoard={this.filterBoard}/>
-          <LanesContainer board={filteredBoard} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
-          {
-            !addCardHidden ? <AddCardModal closeModal={this.closeAddCardModal} addCardHandler={this.addCardHandler}/> : null
-          }
-          {
-            !editCardHidden ? <CardSummaryModal cardContent={cardContent} closeModal={this.closeEditCardModal} editCardHandler={this.editCardHandler} deleteCardHandler={this.deleteCard}/> : null
-          }
-        </section>
+      <React.Fragment>
+          <section className="board">
+            <BoardHeader title={title} openModal={this.openAddCardModal} filterBoard={this.filterBoard}/>
+            <LanesContainer board={filteredBoard} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
+            {
+              !addCardHidden ? <AddCardModal closeModal={this.closeAddCardModal} addCardHandler={this.addCardHandler}/> : null
+            }
+            {
+              !editCardHidden ? <CardSummaryModal cardContent={cardContent} closeModal={this.closeEditCardModal} editCardHandler={this.editCardHandler} deleteCardHandler={this.deleteCard}/> : null
+            }
+          </section>
       </React.Fragment>
     );
   }

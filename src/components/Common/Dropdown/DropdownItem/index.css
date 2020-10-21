@@ -8,6 +8,7 @@
   padding: 16px;
   align-items: center;
   box-sizing: border-box;
+  outline: none;
 }
 
 .drop-down-item:hover, .drop-down-item:focus {

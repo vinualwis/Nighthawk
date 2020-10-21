@@ -26,6 +26,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: white;
+  font-size: 1.25rem;
 }
 
 .board-summary-title-container {
