@@ -10,7 +10,6 @@ class Dropdown extends React.Component {
     this.state = {
       hidden: true
     }
-    this.firstItem = React.createRef();
   }
 
   outSideClickListener = (event) => {
@@ -21,12 +20,6 @@ class Dropdown extends React.Component {
 
   componentDidMount(){
     document.addEventListener('click',this.outSideClickListener);
-  }
-
-  componentDidUpdate(){
-    if(!this.state.hidden){
-      this.firstItem.current && this.firstItem.current.focus();
-    }
   }
   
   componentWillUnmount(){
@@ -69,7 +62,7 @@ class Dropdown extends React.Component {
         <DropDownButton clickHandler={this.toggleVisible}>
           {buttonContent}
         </DropDownButton>
-        <DropDownList visible={!hidden} ref={this.firstItem}>
+        <DropDownList visible={!hidden}>
           {React.Children.map(this.props.children, (child,index) => {
 
               return React.cloneElement(child, {

@@ -8,28 +8,28 @@ import {Link} from 'react-router-dom';
 const Home = () => {
   return (
     <section className="home">
-        <div className="home-content"> 
-          <Heading1 className="home-title">My Boards</Heading1>
-          <section className="boards-gallery">
-            <Link to="/board">
-              <BoardSummary 
-                title="Project Nighthawk" 
-                description="Simple, elegant and customer-centric kanban tool"
-                recentlyUpdated
-              />
-            </Link>
+      <div className="home-content"> 
+        <Heading1 className="home-title">My Boards</Heading1>
+        <section className="boards-gallery">
+          <Link to="/board">
             <BoardSummary 
-              title="Apollo" 
-              description="Understanding customer habits for different markets"
-            />
-            <BoardSummary 
-              title="Altex" 
+              title="Project Nighthawk" 
               description="Simple, elegant and customer-centric kanban tool"
               recentlyUpdated
             />
-            <AddBoardPlaceholder/>
-          </section>
-        </div>
+          </Link>
+          <BoardSummary 
+            title="Apollo" 
+            description="Understanding customer habits for different markets"
+          />
+          <BoardSummary 
+            title="Altex" 
+            description="Simple, elegant and customer-centric kanban tool"
+            recentlyUpdated
+          />
+          <AddBoardPlaceholder/>
+        </section>
+      </div>
     </section>
   )
 }
