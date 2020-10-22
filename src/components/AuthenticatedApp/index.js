@@ -20,8 +20,12 @@ const AuthenticatedApp = () => {
       <AppHeader logOut={logOutHandler} authUser={authUser}/>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path={BOARD} component={Board}/>
-            <Route exact path={HOME} component={Home}/>
+            <Route exact path={BOARD}>
+              <Board/>
+            </Route>
+            <Route exact path={HOME}>
+              <Home/>
+            </Route>
             <Redirect to={HOME}/>
           </Switch>
         </Suspense>

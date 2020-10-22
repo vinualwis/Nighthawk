@@ -1,10 +1,9 @@
 import React from 'react';
 import TextInput from '../Common/FormControls/TextInput';
 import LoginAction from '../Login/LoginAction';
-import { auth } from '../../services/firebase';
+import { auth, database} from '../../services/firebase';
 import './index.css';
 import { withRouter } from 'react-router-dom';
-import { BOARD } from '../../constants/routes';
 import LoginError from '../Login/LoginError';
 
 class SignInForm extends React.Component {
@@ -34,10 +33,7 @@ class SignInForm extends React.Component {
   onSubmit = (e) => {
     const { email, password } = this.state;
     e.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).then(() => {
-      // eslint-disable-next-line react/prop-types
-      this.props.history.push(BOARD);
-    }).catch((error) => {
+    auth.signInWithEmailAndPassword(email, password).catch((error) => {
       this.setState({error})
     });
   }

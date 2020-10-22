@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 
-const AddBoardPlaceholder = () => {
+const AddBoardPlaceholder = ({...rest}) => {
   return (
-    <article className="add-board-placeholder">
+    <article className="add-board-placeholder" {...rest}>
       <h2 >
         <FontAwesomeIcon icon={faPlus} className="add-board-placeholder-icon"/>
         Add Board

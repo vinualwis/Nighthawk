@@ -1,9 +1,9 @@
 import React from 'react';
 import TextInput from '../Common/FormControls/TextInput';
 import LoginAction from '../Login/LoginAction';
-import { auth } from '../../services/firebase';
+import { auth,database } from '../../services/firebase';
 import './index.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import LoginError from '../Login/LoginError';
 
 class SignUpForm extends React.Component {
@@ -42,8 +42,19 @@ class SignUpForm extends React.Component {
     const { email, password, username } = this.state;
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password).then((user) => {
+      const { uid } = user.user;
       auth.currentUser.updateProfile({
         displayName: username
+      });
+      database.ref(`users/${uid}`).set({
+        email,
+        username,
+        boards: {
+          "001": {
+            role: "admin"
+          }
+        },
+        isActive: true
       });
     }).catch((error) => {
       this.setState({error});
