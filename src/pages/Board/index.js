@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './index.css';
 import LanesContainer from '../../components/LanesContainer';
@@ -6,6 +7,7 @@ import CardSummaryModal from '../../components/CardSummaryModal';
 import { database, auth } from '../../services/firebase';
 import withAuthorisation from '../../components/Authorisation';
 import BoardHeader from '../../components/BoardHeader';
+import AuthUserContext from '../../components/Context/authentication'
 
 class Board extends React.Component {
   constructor() {
@@ -18,15 +20,19 @@ class Board extends React.Component {
       board: {},
       title: 'Project Nighthawk',
       filterText: '',
+      boardId: null
     }
   }
 
+  static contextType = AuthUserContext;
+
   componentDidMount(){
-    database.ref('boards/001/').on("value", snapshot => {
+    const boardId = this.props.match.params.id;
+    database.ref(`boards/${boardId}/`).on("value", snapshot => {
       let newBoard = {};
-      const { card_id_init, lanes: board } = snapshot.val();
+      const { card_id_init, lanes: board, name: title } = snapshot.val();
       Object.keys(board).sort((a,b) => board[a].order - board[b].order).forEach((lane) => {
-        if (board[lane].cards) {
+        if (board[lane].cards && board[lane].cards !== "NULL") {
           newBoard[lane] = Object.values(board[lane].cards)
           .sort((a,b) => a.position - b.position).map((card) => {
             return {
@@ -39,12 +45,12 @@ class Board extends React.Component {
           newBoard[lane] = [];
         }
       });
-      this.setState({board: newBoard, counter: card_id_init});
+      this.setState({board: newBoard, counter: card_id_init, boardId, title});
     });
   }
 
   componentWillUnmount(){ 
-    database.ref('boards/001/').off();
+    database.ref(`boards/${this.state.boardId}/`).off();
   }
 
   openAddCardModal = (e) => {
@@ -96,7 +102,7 @@ class Board extends React.Component {
     } = newCard;
     const id = `NHAWK-${this.state.counter}`;
     const position = this.calculatePosition(lane);
-    database.ref(`boards/001/lanes/${lane}/cards/${id}`).set({
+    database.ref(`boards/${this.state.boardId}/lanes/${lane}/cards/${id}`).set({
       id,
       title,
       priority,
@@ -104,7 +110,7 @@ class Board extends React.Component {
       assignee,
       position
     });
-    database.ref(`boards/001/card_id_init`).set(this.state.counter + 1);
+    database.ref(`boards/${this.state.boardId}/card_id_init`).set(this.state.counter + 1);
   }
 
   logOutHandler = () => {
@@ -132,11 +138,11 @@ class Board extends React.Component {
     }
     else {
       newPosition = this.calculatePosition(lane);
-      database.ref(`boards/001/lanes/${previousLane}/cards/${id}`).remove(() => {
+      database.ref(`boards/${this.state.boardId}/lanes/${previousLane}/cards/${id}`).remove(() => {
         this.onLaneContentChange(previousLane,this.state.board[previousLane]);
       });
     }
-    database.ref(`boards/001/lanes/${lane}/cards/${id}`).set({
+    database.ref(`boards/${this.state.boardId}/lanes/${lane}/cards/${id}`).set({
       id,
       title,
       priority,
@@ -148,7 +154,7 @@ class Board extends React.Component {
 
   deleteCard = (card) => {
     const { id, lane } = card;
-    database.ref(`boards/001/lanes/${lane}/cards/${id}`).remove(() => {
+    database.ref(`boards/${this.state.boardId}/lanes/${lane}/cards/${id}`).remove(() => {
       this.onLaneContentChange(lane,this.state.board[lane]);
     });
   }
@@ -178,25 +184,25 @@ class Board extends React.Component {
       }
     }
     const cardsJSON = cards.reduce(reducer,{});
-    database.ref(`boards/001/lanes/${lane}/cards`).set(cardsJSON);
+    database.ref(`boards/${this.state.boardId}/lanes/${lane}/cards`).set(cardsJSON);
   }
 
   filterTheBoard = () => {
     let filteredBoard = {};
     const { board, filterText } = this.state;
     Object.keys(board).forEach((lane) => {
-      filteredBoard[lane] = board[lane].map((card) => {
-        const {title, priority, category} = card;
-        const meetsCriteria = title.includes(filterText) || priority.includes(filterText) || category.includes(filterText);
-        if (meetsCriteria) {
-          card.display = true;
+        filteredBoard[lane] = board[lane].map((card) => {
+          const {title, priority, category} = card;
+          const meetsCriteria = title.includes(filterText) || priority.includes(filterText) || category.includes(filterText);
+          if (meetsCriteria) {
+            card.display = true;
+          }
+          else {
+            card.display = false;
+          }
+          return card;
         }
-        else {
-          card.display = false;
-        }
-        return card;
-      }
-      );
+        );
     });
     return filteredBoard;
   }

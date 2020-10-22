@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from '../Common/FormControls/TextInput';
 import LoginAction from '../Login/LoginAction';
-import { auth } from '../../services/firebase';
+import { auth, database} from '../../services/firebase';
 import './index.css';
 import { withRouter } from 'react-router-dom';
 import LoginError from '../Login/LoginError';
