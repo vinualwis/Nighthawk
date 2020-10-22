@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './index.css';
 import LanesContainer from '../../components/LanesContainer';
@@ -6,6 +7,7 @@ import CardSummaryModal from '../../components/CardSummaryModal';
 import { database, auth } from '../../services/firebase';
 import withAuthorisation from '../../components/Authorisation';
 import BoardHeader from '../../components/BoardHeader';
+import AuthUserContext from '../../components/Context/authentication'
 
 class Board extends React.Component {
   constructor() {
@@ -22,11 +24,13 @@ class Board extends React.Component {
     }
   }
 
+  static contextType = AuthUserContext;
+
   componentDidMount(){
     const boardId = this.props.match.params.id;
     database.ref(`boards/${boardId}/`).on("value", snapshot => {
       let newBoard = {};
-      const { card_id_init, lanes: board } = snapshot.val();
+      const { card_id_init, lanes: board, name: title } = snapshot.val();
       Object.keys(board).sort((a,b) => board[a].order - board[b].order).forEach((lane) => {
         if (board[lane].cards) {
           newBoard[lane] = Object.values(board[lane].cards)
@@ -41,7 +45,7 @@ class Board extends React.Component {
           newBoard[lane] = [];
         }
       });
-      this.setState({board: newBoard, counter: card_id_init, boardId});
+      this.setState({board: newBoard, counter: card_id_init, boardId, title});
     });
   }
 

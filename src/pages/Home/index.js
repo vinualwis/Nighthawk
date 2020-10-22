@@ -5,6 +5,7 @@ import BoardSummary from '../../components/BoardSummary';
 import AddBoardPlaceholder from '../../components/AddBoardPlaceholder';
 import {Link} from 'react-router-dom';
 import { database } from '../../services/firebase';
+import AuthUserContext from '../../components/Context/authentication';
 
 
 class Home extends React.Component {
@@ -16,24 +17,28 @@ class Home extends React.Component {
     }
   }
 
+  static contextType = AuthUserContext;
+
   componentDidMount() {
-    database.ref(`boards`).once('value').then((snapshot)=> {
-      const boardsData = snapshot.val();
-      let boards = Object.keys(boardsData).map((boardId) => {
-        const {
-          name: title,
-          description,
-        } = boardsData[boardId];
-        return {
-          id: boardId,
-          title,
-          description
-        }
+    const authUserId = this.context.uid;
+    authUserId && database.ref(`users/${authUserId}/boards`).once('value').then((snapshot) => {
+      Object.keys(snapshot.val()).forEach((boardId) => {
+        database.ref(`boards/${boardId}`).once('value').then((boardSnap) => {
+          const {
+            name: title,
+            description
+          } = boardSnap.val();
+          this.setState((prevState) => {
+            return ({
+              boards: [
+                ...prevState.boards, {id: boardId,title,description}
+              ]
+            }
+            )
+          }) 
+        })
       });
-      this.setState({
-        boards
-      });
-    })
+    });
   }
 
   render() {

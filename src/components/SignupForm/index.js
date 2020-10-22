@@ -49,7 +49,11 @@ class SignUpForm extends React.Component {
       database.ref(`users/${uid}`).set({
         email,
         username,
-        boards: ["001"],
+        boards: {
+          "001": {
+            role: "admin"
+          }
+        },
         isActive: true
       });
     }).catch((error) => {

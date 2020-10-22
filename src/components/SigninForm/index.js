@@ -33,11 +33,7 @@ class SignInForm extends React.Component {
   onSubmit = (e) => {
     const { email, password } = this.state;
     e.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).then((authUser) => {
-      database.ref(`users/${authUser.user.uid}`).set({
-        isActive: true
-      });
-    }).catch((error) => {
+    auth.signInWithEmailAndPassword(email, password).catch((error) => {
       this.setState({error})
     });
   }
