@@ -32,7 +32,7 @@ class Board extends React.Component {
       let newBoard = {};
       const { card_id_init, lanes: board, name: title } = snapshot.val();
       Object.keys(board).sort((a,b) => board[a].order - board[b].order).forEach((lane) => {
-        if (board[lane].cards) {
+        if (board[lane].cards && board[lane].cards !== "NULL") {
           newBoard[lane] = Object.values(board[lane].cards)
           .sort((a,b) => a.position - b.position).map((card) => {
             return {
@@ -191,18 +191,18 @@ class Board extends React.Component {
     let filteredBoard = {};
     const { board, filterText } = this.state;
     Object.keys(board).forEach((lane) => {
-      filteredBoard[lane] = board[lane].map((card) => {
-        const {title, priority, category} = card;
-        const meetsCriteria = title.includes(filterText) || priority.includes(filterText) || category.includes(filterText);
-        if (meetsCriteria) {
-          card.display = true;
+        filteredBoard[lane] = board[lane].map((card) => {
+          const {title, priority, category} = card;
+          const meetsCriteria = title.includes(filterText) || priority.includes(filterText) || category.includes(filterText);
+          if (meetsCriteria) {
+            card.display = true;
+          }
+          else {
+            card.display = false;
+          }
+          return card;
         }
-        else {
-          card.display = false;
-        }
-        return card;
-      }
-      );
+        );
     });
     return filteredBoard;
   }

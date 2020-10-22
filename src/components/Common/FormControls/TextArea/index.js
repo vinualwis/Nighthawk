@@ -4,7 +4,7 @@ import FormControl from '../FormControlBase';
 import FormControlLabel from '../FormControlLabel';
 import './index.css';
 
-const TextArea = ( { id, inputLabel, value, onChange } ) => {
+const TextArea = ( { id, inputLabel, value, onChange, ...rest } ) => {
   return (
     <FormControl>
       <FormControlLabel id={id}> {inputLabel} </FormControlLabel>
@@ -13,6 +13,7 @@ const TextArea = ( { id, inputLabel, value, onChange } ) => {
         value={value} 
         onChange={onChange}
         tabIndex="0"
+        {...rest}
       />
     </FormControl>
   );
