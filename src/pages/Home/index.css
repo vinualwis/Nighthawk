@@ -34,3 +34,7 @@ a {
 .home-content > h1 {
   margin-left: 16px;
 }
+
+.home-content > .modal {
+  height: fit-content;
+}
