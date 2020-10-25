@@ -9,7 +9,7 @@ const TextInput = ( { id, inputLabel, value, onChange, type, ...rest } ) => {
       <FormControlLabel id={id}>
         {inputLabel}
       </FormControlLabel>
-      <input id={id} value={value} type={type || 'text'} onChange={onChange} tabIndex='0' {...rest}/>
+      <input className="normal-input" id={id} value={value} type={type || 'text'} onChange={onChange} tabIndex='0' {...rest}/>
     </FormControl>
   )
 }

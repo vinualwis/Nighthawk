@@ -37,4 +37,5 @@ a {
 
 .home-content > .modal {
   height: fit-content;
+  width: 400px;
 }
