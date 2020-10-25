@@ -6,6 +6,7 @@ import Avatar from '../Avatar';
 import userConfig from '../../constants/users';
 import LaneButton from '../LaneButton';
 import SearchBar from '../SearchBar';
+import ShareBoardButton from '../ShareBoardButton'
 
 const BoardHeader = ({title, users, openModal, filterBoard}) => {
   return (
@@ -21,7 +22,8 @@ const BoardHeader = ({title, users, openModal, filterBoard}) => {
               return (
                 <Avatar key={user} firstname={firstname} lastname={lastname} isActive style={{height:'35px', width: '35px', fontSize: '1rem',marginRight: '8px', fontWeight: 'normal', borderColor: uColor, color: uColor, boxShadow: 'rgba(12, 12, 13, 0.2) 0px 1px 8px 0px'}}/>
               )
-            })} 
+            })}
+            <ShareBoardButton onClickHandler={()=>console.log('😃')}/>
         </div>
         <SearchBar searchHandler={filterBoard}/>
         <div className="tool-bar"> 

@@ -30,7 +30,7 @@ class AddCardModal extends Component {
           <ModalHeader>
             <div className='modal-description'> 
               <h2>New Card</h2>
-              <p>Please fill out the following details.</p>
+              <p>Please fill out the following required details.</p>
             </div>
             <BaseButton onClickHandler={closeModal}>
               <FontAwesomeIcon icon={faTimes}/>

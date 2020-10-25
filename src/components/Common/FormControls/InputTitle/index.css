@@ -1,0 +1,40 @@
+.input-title {
+  margin-top: 12px;
+  background: rgba(255,255,255,0%);
+  border-bottom: 2px solid rgba(255,255,255,5%);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  width: 100%;
+}
+
+.under-line {
+  position: absolute;
+  top: 50px;
+  height: 2px;
+  width: 0;
+  background-color: dodgerblue;
+  transition: width 0.2s ease-in, opacity 0.2s ease-in;
+  align-self: center;
+  opacity: 0;
+}
+
+.input-title:focus ~ .under-line {
+  width:100%;
+  opacity: 1;
+}
+
+.input-title:focus, .input-title:active {
+  outline: none;
+}
+
+.input-title:hover {
+  border-bottom-color: white;
+}

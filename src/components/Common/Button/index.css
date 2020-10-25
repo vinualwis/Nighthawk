@@ -20,6 +20,7 @@
 .button-content {
   width: fit-content;
   height: fit-content;
+  letter-spacing: 0.02rem;
 }
 
 .base-button:hover, .base-button:hover {

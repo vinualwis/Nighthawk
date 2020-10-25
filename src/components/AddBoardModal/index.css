@@ -11,3 +11,12 @@
 .home > .modal {
   height: fit-content;
 }
+
+.add-board-modal-title {
+  color: deepskyblue;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
