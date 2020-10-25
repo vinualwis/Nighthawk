@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import './index.css';
 import LanesContainer from '../../components/LanesContainer';
-import AddCardModal from '../../components/AddCardModal';
-import CardSummaryModal from '../../components/CardSummaryModal';
 import { database, auth } from '../../services/firebase';
 import withAuthorisation from '../../components/Authorisation';
 import BoardHeader from '../../components/BoardHeader';
-import AuthUserContext from '../../components/Context/authentication'
+import AuthUserContext from '../../components/Context/authentication';
+
+const AddCardModal = lazy(() => import('../../components/AddCardModal'));
+const CardSummaryModal = lazy(() => import('../../components/CardSummaryModal'));
 
 class Board extends React.Component {
   constructor() {
@@ -222,14 +223,16 @@ class Board extends React.Component {
     const cardContent = Object.keys(board).reduce(reducer,[]).find(card => card.id === openCard);
     return (
       <section className="board">
-        <BoardHeader title={title} openModal={this.openAddCardModal} filterBoard={this.filterBoard}/>
-        <LanesContainer board={filteredBoard} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
-        {
-          !addCardHidden ? <AddCardModal closeModal={this.closeAddCardModal} addCardHandler={this.addCardHandler}/> : null
-        }
-        {
-          !editCardHidden ? <CardSummaryModal cardContent={cardContent} closeModal={this.closeEditCardModal} editCardHandler={this.editCardHandler} deleteCardHandler={this.deleteCard}/> : null
-        }
+        <Suspense>
+          <BoardHeader title={title} openModal={this.openAddCardModal} filterBoard={this.filterBoard}/>
+          <LanesContainer board={filteredBoard} openModal={this.openAddCardModal} onLaneChange={this.onLaneContentChange} onCardClickHandler={this.openEditCardModal}/>
+          {
+            !addCardHidden ? <AddCardModal closeModal={this.closeAddCardModal} addCardHandler={this.addCardHandler}/> : null
+          }
+          {
+            !editCardHidden ? <CardSummaryModal cardContent={cardContent} closeModal={this.closeEditCardModal} editCardHandler={this.editCardHandler} deleteCardHandler={this.deleteCard}/> : null
+          }
+        </Suspense>
       </section>
     );
   }

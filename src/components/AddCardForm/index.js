@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TextInput from '../Common/FormControls/TextInput/index.js';
+import InputTitle from '../Common/FormControls/InputTitle';
 import TextArea from '../Common/FormControls/TextArea/index.js';
 import Select from '../Common/FormControls/Select';
 import SelectItem from '../Common/FormControls/Select/SelectItem';
@@ -30,6 +30,11 @@ class AddCardForm extends Component {
       category: category || '',
       lane: lane || '',
     }
+    this.cardTitleRef = React.createRef();
+  }
+
+  componentDidMount(){
+    this.cardTitleRef.current.focus();
   }
 
   onTitleChange = (e) => {
@@ -99,11 +104,13 @@ class AddCardForm extends Component {
     } = this.state;
     return (
       <form id="add-card-form" onSubmit={this.onSubmitHandler}>
-        <TextInput 
+        <InputTitle
           id="title" 
-          inputLabel="Title"
           value={title}
           onChange={this.onTitleChange}
+          placeholder="Add card title"
+          ref={this.cardTitleRef}
+          required
         />
         <Select id="assignee" selectLabel="Assignee" initialValue={assignee} onChangeHandler={this.onAssigneeChange}>
           <SelectItem id="option0"></SelectItem>
